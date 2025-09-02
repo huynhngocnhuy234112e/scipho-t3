@@ -466,7 +466,7 @@ export default function SubscriptionCards() {
             </p>
           </div>
           <div className="relative mt-6 text-center">
-            <div className="text-3xl font-bold sm:text-4xl">0 SUSDC</div>
+            <div className="text-3xl font-bold sm:text-4xl">0 USDT</div>
             <p className="text-muted-foreground text-sm sm:text-base">
               per month
             </p>
@@ -513,7 +513,7 @@ export default function SubscriptionCards() {
             </p>
           </div>
           <div className="relative mt-6 text-center">
-            <div className="text-3xl font-bold sm:text-4xl">19 SUSDC</div>
+            <div className="text-3xl font-bold sm:text-4xl">19 USDT</div>
             <p className="text-muted-foreground text-sm sm:text-base">
               per month
             </p>
@@ -552,7 +552,7 @@ export default function SubscriptionCards() {
             </p>
           </div>
           <div className="relative mt-6 text-center">
-            <div className="text-3xl font-bold sm:text-4xl">39 SUSDC</div>
+            <div className="text-3xl font-bold sm:text-4xl">39 USDT</div>
             <p className="text-muted-foreground text-sm sm:text-base">
               per month
             </p>
@@ -631,7 +631,7 @@ export default function SubscriptionCards() {
                     Monthly Price
                   </span>
                   <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-2xl font-bold text-transparent">
-                    {planToConfirm === PlanType.PRO ? "19" : "39"} SUSDC
+                    {planToConfirm === PlanType.PRO ? "19" : "39"} USDT
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
@@ -661,7 +661,7 @@ export default function SubscriptionCards() {
                   <p>
                     This subscription will charge{" "}
                     <span className="text-foreground font-semibold">
-                      {planToConfirm === PlanType.PRO ? "19" : "39"} SUSDC
+                      {planToConfirm === PlanType.PRO ? "19" : "39"} USDT
                     </span>{" "}
                     from your connected wallet and provide immediate access to
                     all {planToConfirm?.toLowerCase()} plan features for 30

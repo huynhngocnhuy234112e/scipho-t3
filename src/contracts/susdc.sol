@@ -6,7 +6,7 @@ pragma solidity ^0.8.0;
 
 // contract USDC is ERC20, Ownable {
 //     constructor(uint256 _initialSupply)
-//         ERC20("Scipho Stablecoin", "SUSDC")
+//         ERC20("Scipho Stablecoin", "USDT")
 //         Ownable(msg.sender) 
 //     {
 //         _mint(msg.sender, _initialSupply);
