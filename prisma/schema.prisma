@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+enum MessageRole {
+  USER
+  ASSISTANT
+}
+
+enum MessageType {
+    RESULT
+    ERROR
+    TEXT
+}
+
+enum MessageStatus {
+    PROCESSING
+    COMPLETED
+    FAILED
+}
+
+enum PlanType {
+    FREE
+    PRO
+    PREMIUM
+}
+
+model Message {
+    id        String   @id @default(uuid())
+    content   String
+    role      MessageRole   
+    type      MessageType
+    status    MessageStatus @default(PROCESSING)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    threadId  String
+    thread    Thread  @relation(fields: [threadId], references: [id], onDelete: Cascade)
+
+    fragments Fragment?
+
+    userId String
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Fragment {
+    id        String   @id @default(uuid())
+    messageId String   @unique
+    message   Message  @relation(fields: [messageId], references: [id], onDelete: Cascade)
+    
+    sandboxId  String
+    sandboxUrl String
+    title      String
+    files      Json
+    
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Thread {
+    id        String   @id @default(uuid())
+    name      String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    messages Message[]
+
+    userId String
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+    id String @id @default(uuid())
+
+    // Subscription Plan
+    plan PlanType @default(FREE)
+    subscriptionExpiresAt DateTime? // When paid subscription expires
+    
+    // Credits Management
+    credits Int @default(5)
+    creditsUsedToday Int @default(0)
+    isSubscribed Boolean @default(false)
+    lastCreditRefresh DateTime @default(now())
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    threads Thread[]
+    messages Message[]
+}
